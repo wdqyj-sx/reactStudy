@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./js/react.development.js"></script>
+	<!-- 引入react-dom，用于支持react操作DOM -->
+	<script type="text/javascript" src="./js/react-dom.development.js"></script>
+	<!-- 引入babel，用于将jsx转为js -->
+    <script type="text/javascript" src="./js/babel.min.js"></script>
+    <script src="./js/prop-types.js"></script>
+</head>
+<body>  
+    <!-- 容器 -->
+    <div id="text"></div>
+    
+    <!-- 一定要带上babel，告诉编译器里面写的语法需要转换 -->
+    <script type="text/babel">
+        class Mycomponent extends React.Component{
+            static propTypes = {
+                name:PropTypes.string.isRequired,
+                sex:PropTypes.string,
+                age:PropTypes.number
+            }
+            static defaultProps = {
+                sex:'男',
+                age:18
+            }
+            render(){ 
+               
+                return (
+                    <h1>
+                        <ul>
+                           <li>{this.props.name}</li>   
+                           <li>{this.props.age}</li>   
+                           <li>{this.props.sex}</li>   
+
+                        </ul>    
+                    </h1>
+                )
+            }
+        } 
+         let obj = {
+             name:'张三',
+            age:18,
+            sex:'男'
+         }
+        ReactDOM.render(<Mycomponent {...obj}/>,document.getElementById('text'));
+    </script>
+</body>
+</html>

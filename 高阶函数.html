@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="./js/react.development.js"></script>
+	<!-- 引入react-dom，用于支持react操作DOM -->
+	<script type="text/javascript" src="./js/react-dom.development.js"></script>
+	<!-- 引入babel，用于将jsx转为js -->
+	<script type="text/javascript" src="./js/babel.min.js"></script>
+</head>
+<body>
+    <div id="text"></div>
+    <script type="text/babel">
+        class Mycomponent extends React.Component {
+            state = {
+                name:'',
+                password:''
+            }
+            show = (name,e) =>{
+                this.setState({
+                    [name]:e.target.value
+                })
+            }
+            render(){
+                return (
+                    <form>
+                        <div>
+                        <label >name:</label>
+                        <input  type="text" value={this.state.name} onChange={(e)=>{this.show('name',e)}} / >
+                        </div>
+                        <div>
+                        <label >password:</label>
+                        <input type="text" value={this.state.password} onChange={(e)=>{
+                            this.show('password',e)
+                        }} />
+                        </div>    
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(<Mycomponent/>,document.getElementById('text'));
+    </script>
+</body>
+</html>
